@@ -12,7 +12,7 @@ jobs:
           bad=0
           while IFS= read -r f; do
             case "$f" in
-              README.md|.github/workflows/images-only.yml|.githooks/pre-commit|.gitignore) continue ;;
+              README.md|.github/workflows/images-only.yml|.github/workflows/fetch-inbox.yml|.githooks/pre-commit|.gitignore|_inbox/*.txt|_inbox/*.failed) continue ;;
             esac
             case "${f,,}" in
               *.png|*.jpg|*.jpeg|*.webp|*.gif|*.svg|*.mp4|*.webm) ;;
