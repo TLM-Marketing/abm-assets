@@ -1,0 +1,2 @@
+url=https://img.recraft.ai/NHTyvgT9Zwa1-6WmiBZNEU0WWxrhWGSnJG6kXmdIl2M/raw:1/plain/abs://prod/images/72e2bfe0-b28e-4b32-81e1-88bb7e58dccd
+path=kaltura/2026-11-kaltura-events-demo/microsoft-hero_image
