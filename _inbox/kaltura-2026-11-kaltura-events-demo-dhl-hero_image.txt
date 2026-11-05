@@ -1,0 +1,2 @@
+url=https://img.recraft.ai/E3xTPfmygzNy8AsrP1A7hszQBnf2_9dKf96m5pqwLlY/raw:1/plain/abs://prod/images/37b7d4c0-0ab0-4926-b16c-73df30948e5b
+path=kaltura/2026-11-kaltura-events-demo/dhl-hero_image
