@@ -1,0 +1,68 @@
+name: fetch-inbox
+# A claude.ai chat cannot download from Recraft (its sandbox reaches only a few hosts), but it can
+# commit a small request file. This job runs on GitHub, where the download works: it fetches each
+# requested render, checks it is an image from img.recraft.ai, stores it under
+# <client>/<campaign>/<name>.<ext> and removes the request. Commits are by github-actions[bot].
+on:
+  push:
+    branches: [main]
+    paths: ["_inbox/**"]
+permissions:
+  contents: write
+concurrency:
+  group: fetch-inbox
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch requested renders
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          changed=0
+          for req in _inbox/*.txt; do
+            url=$(sed -n 's/^url=//p' "$req" | head -1 | tr -d '\r')
+            dest=$(sed -n 's/^path=//p' "$req" | head -1 | tr -d '\r')
+            fail=""
+            case "$url" in
+              https://img.recraft.ai/*) ;;
+              *) fail="url must be on img.recraft.ai" ;;
+            esac
+            if [ -z "$fail" ] && ! [[ "$dest" =~ ^[A-Za-z0-9_][A-Za-z0-9._-]*/[A-Za-z0-9_][A-Za-z0-9._-]*/[A-Za-z0-9_][A-Za-z0-9._-]*$ ]]; then
+              fail="path must be <client>/<campaign>/<name> with no extension"
+            fi
+            if [ -z "$fail" ]; then
+              tmp=$(mktemp)
+              if curl -fsSL --max-time 90 --max-filesize 15728640 -o "$tmp" "$url"; then
+                mime=$(file --mime-type -b "$tmp")
+                case "$mime" in
+                  image/png) ext=png ;; image/jpeg) ext=jpg ;; image/webp) ext=webp ;; image/gif) ext=gif ;;
+                  *) ext=""; fail="downloaded content is $mime, not an image" ;;
+                esac
+                if [ -n "$ext" ]; then
+                  mkdir -p "$(dirname "$dest")"
+                  mv "$tmp" "$dest.$ext"
+                  git add "$dest.$ext"
+                  echo "fetched $dest.$ext"
+                fi
+              else
+                fail="download failed (link expired? Recraft links last about 24 hours)"
+              fi
+              rm -f "$tmp"
+            fi
+            if [ -n "$fail" ]; then
+              echo "$fail" > "${req%.txt}.failed"
+              git add "${req%.txt}.failed"
+              echo "FAILED $req: $fail"
+            fi
+            git rm -q "$req"
+            changed=1
+          done
+          if [ "$changed" = 1 ]; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -m "assets: fetched renders requested in _inbox"
+            git push
+          fi
