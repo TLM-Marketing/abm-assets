@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Refuses any staged file that is not an image or video. Installed by publish_asset.py
+# (git config core.hooksPath .githooks). Same rule as the images-only GitHub check.
+set -euo pipefail
+bad=0
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  case "$f" in
+    README.md|.github/workflows/images-only.yml|.githooks/pre-commit|.gitignore) continue ;;
+  esac
+  case "${f,,}" in
+    *.png|*.jpg|*.jpeg|*.webp|*.gif|*.svg|*.mp4|*.webm) ;;
+    *) echo "pre-commit: not a media file, refused: $f"; bad=1; continue ;;
+  esac
+  if [ -f "$f" ]; then
+    if ! file --mime-type -b "$f" | grep -Eq '^(image/|video/)'; then
+      echo "pre-commit: content is not image/video, refused: $f"; bad=1
+    fi
+    if [ "$(stat -c %s "$f")" -gt 15728640 ]; then
+      echo "pre-commit: over 15 MB, refused: $f"; bad=1
+    fi
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACMR)
+exit $bad
