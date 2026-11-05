@@ -1,2 +1,0 @@
-url=https://img.recraft.ai/JMdZCyP8Zt4Wj58MWAVp_2v8xd5kkERiNDEpp9QnOIc/raw:1/plain/abs://prod/images/b4491e39-a368-44bf-8841-76c99e3ce46b
-path=kaltura/2026-11-kaltura-events-demo/apple-hero_image
