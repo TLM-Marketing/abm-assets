@@ -1,2 +1,0 @@
-url=https://img.recraft.ai/u9tuANMv-ZlUT2z0FHAITps_8ne7YfwOcKKR1ufFBwo/raw:1/plain/abs://prod/images/0be73671-ceb4-4f6b-b925-45b67a5cd152
-path=cobalt-dispatch/2026-11-fleet-ops-demo/FOD-Orrin-UK-hero_image
