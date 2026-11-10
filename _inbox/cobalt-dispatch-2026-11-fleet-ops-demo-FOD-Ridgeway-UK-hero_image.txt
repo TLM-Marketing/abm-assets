@@ -1,2 +1,0 @@
-url=https://img.recraft.ai/lQNQMTaQrXcRXGAVaHRDHMM1Rz99gNN94ixDtPn9rWY/raw:1/plain/abs://prod/images/768d0c03-3590-42a8-8862-f204efd160e4
-path=cobalt-dispatch/2026-11-fleet-ops-demo/FOD-Ridgeway-UK-hero_image
