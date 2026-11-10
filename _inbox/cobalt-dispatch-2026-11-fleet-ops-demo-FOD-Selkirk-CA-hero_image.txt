@@ -1,2 +1,0 @@
-url=https://img.recraft.ai/iUf6wVSQtpskSQO-SkOUJYYckZiCR6B6lno0nhqdfVM/raw:1/plain/abs://prod/images/f9113d6a-3a82-41d7-a9c4-fd80001a3e1a
-path=cobalt-dispatch/2026-11-fleet-ops-demo/FOD-Selkirk-CA-hero_image
