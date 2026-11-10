@@ -1,2 +1,0 @@
-url=https://img.recraft.ai/Le1taMy4kvQbz-Gm6krNki5KAMVip5GRvA2Eat_4Ut4/raw:1/plain/abs://prod/images/a29ec02b-d098-497e-8441-1543efed331f
-path=cobalt-dispatch/2026-11-fleet-ops-demo/Fallback-hero_image
