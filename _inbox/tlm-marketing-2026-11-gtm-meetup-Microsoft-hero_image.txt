@@ -1,0 +1,2 @@
+url=https://img.recraft.ai/FmdpaYgdWXtsx_J6WVdUskxYXrkjA1i5kpCYiZ6zJRQ/raw:1/plain/abs://prod/images/bbeb9532-f9cf-4266-94ff-51e5aa76ec61
+path=tlm-marketing/2026-11-gtm-meetup/Microsoft-hero_image

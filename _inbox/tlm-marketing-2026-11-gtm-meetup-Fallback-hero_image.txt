@@ -1,0 +1,2 @@
+url=https://img.recraft.ai/5cOp6Bu9excSJH28MMDaFAR2kRpa9e9LMXmN0Ltvs78/raw:1/plain/abs://prod/images/99e6c3e0-c6c9-49f1-96ba-77f567d24f83
+path=tlm-marketing/2026-11-gtm-meetup/Fallback-hero_image
